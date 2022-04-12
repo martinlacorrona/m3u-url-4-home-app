@@ -1,0 +1,29 @@
+name: m3u_url_4_home_app
+description: m3u-url-4-home app for change url, update cache, update config and more.
+version: 1.0.0+1
+
+publish_to: 'none'
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  localize_and_translate: ^4.1.1
+  http: ^0.13.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/lang/en.json
+    - assets/lang/es.json

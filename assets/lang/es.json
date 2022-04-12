@@ -1,0 +1,9 @@
+{
+  "appTitle": "M3U-UL-4-HOME",
+  "url": "URL",
+  "regexPattern": "REGEX PATTERN",
+  "update": "Actualizar",
+  "refreshCache": "Refrescar lista",
+  "lastCacheUpdate": "Ultima descarga lista: ",
+  "loading": "Cargando..."
+}
