@@ -11,9 +11,8 @@ Future<ConfigModel> getConfig() async {
 
   if (response.statusCode == 200) {
     return ConfigModel.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to load config.');
   }
+  throw Exception('Failed to load config.');
 }
 
 /*Future<ConfigModel> postCache(ConfigModel configModel) async {
@@ -23,9 +22,8 @@ Future<ConfigModel> getConfig() async {
 
   if (response.statusCode == 200) {
     return ConfigModel.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to update cache.');
   }
+  throw Exception('Failed to update cache.');
 }*/
 
 class ConfigModel {

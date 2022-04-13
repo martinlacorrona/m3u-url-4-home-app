@@ -11,9 +11,8 @@ Future<CacheModel> getCache() async {
 
   if (response.statusCode == 200) {
     return CacheModel.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to load cache.');
   }
+  throw Exception('Failed to load cache.');
 }
 
 Future<CacheModel> postCache() async {

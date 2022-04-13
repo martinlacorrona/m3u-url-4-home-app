@@ -12,18 +12,13 @@ class CacheWidget extends StatefulWidget {
 
 class _CacheWidgetState extends State<CacheWidget> {
   bool _isLoading = true;
+  bool _isError = false;
   String _dateResult = "";
 
   @override
   void initState() {
     super.initState();
-    getCache().then((cacheModel) {
-      setState(() {
-        _isLoading = false;
-        _dateResult = cacheModel.lastUpdate.toString();
-      });
-    });
-    //TODO: onError (control)
+    getCacheCall();
   }
 
   @override
@@ -32,27 +27,51 @@ class _CacheWidgetState extends State<CacheWidget> {
       children: [
         Center(
           child: Text(
-              _isLoading ? "Loading...".tr() : "lastCacheUpdate".tr() + _dateResult),
+              _isLoading ? "Loading...".tr() : _isError ? 'errorTryAgain'.tr() : "lastCacheUpdate".tr() + _dateResult),
         ),
         const SizedBox(height: 10),
         Center(
           child: ElevatedButton(
-            onPressed: _isLoading ? null : () {
-              setState(() {
-                _isLoading = true;
-              });
-              postCache().then((cacheModel) {
-                setState(() {
-                  _isLoading = false;
-                  _dateResult = cacheModel.lastUpdate.toString();
-                });
-              });
-              //TODO: onError (control)
-            },
+            onPressed: _isLoading ? null : postCacheCall,
             child: Text('refreshCache'.tr()),
+            style: _isError ? ElevatedButton.styleFrom(
+                primary: Colors.redAccent
+            ) : null,
           ),
         ),
       ],
     );
+  }
+
+  getCacheCall() {
+    getCache().then((cacheModel) {
+      setState(() {
+        _isLoading = false;
+        _dateResult = cacheModel.lastUpdate.toString();
+      });
+    }).catchError((error) {
+      setState(() {
+        _isLoading = false;
+        _isError = true;
+      });
+    });
+  }
+
+  postCacheCall() {
+    setState(() {
+      _isLoading = true;
+    });
+    postCache().then((cacheModel) {
+      setState(() {
+        _isLoading = false;
+        _isError = false;
+        _dateResult = cacheModel.lastUpdate.toString();
+      });
+    }).catchError((error) {
+      setState(() {
+        _isLoading = false;
+        _isError = true;
+      });
+    });
   }
 }
