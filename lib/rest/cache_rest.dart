@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../app/config.dart';
+import 'model/cache_model.dart';
 
 Future<CacheModel> getCache() async {
   final response = await http
@@ -23,19 +24,5 @@ Future<CacheModel> postCache() async {
     return CacheModel.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to update cache.');
-  }
-}
-
-class CacheModel {
-  final DateTime lastUpdate;
-
-  const CacheModel({
-    required this.lastUpdate,
-  });
-
-  factory CacheModel.fromJson(Map<String, dynamic> json) {
-    return CacheModel(
-      lastUpdate: DateTime.fromMillisecondsSinceEpoch(json['lastUpdate']),
-    );
   }
 }

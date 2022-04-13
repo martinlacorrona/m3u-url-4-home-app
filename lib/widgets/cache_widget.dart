@@ -13,7 +13,7 @@ class CacheWidget extends StatefulWidget {
 class _CacheWidgetState extends State<CacheWidget> {
   bool _isLoading = true;
   bool _isError = false;
-  String _dateResult = "";
+  DateTime _dateResult = DateTime.now();
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _CacheWidgetState extends State<CacheWidget> {
       children: [
         Center(
           child: Text(
-              _isLoading ? "Loading...".tr() : _isError ? 'errorTryAgain'.tr() : "lastCacheUpdate".tr() + _dateResult),
+              _isLoading ? "Loading...".tr() : _isError ? 'errorTryAgain'.tr() : "lastCacheUpdate".tr() + _dateResult.toString()),
         ),
         const SizedBox(height: 10),
         Center(
@@ -47,7 +47,7 @@ class _CacheWidgetState extends State<CacheWidget> {
     getCache().then((cacheModel) {
       setState(() {
         _isLoading = false;
-        _dateResult = cacheModel.lastUpdate.toString();
+        _dateResult = cacheModel.lastUpdate;
       });
     }).catchError((error) {
       setState(() {
@@ -65,7 +65,7 @@ class _CacheWidgetState extends State<CacheWidget> {
       setState(() {
         _isLoading = false;
         _isError = false;
-        _dateResult = cacheModel.lastUpdate.toString();
+        _dateResult = cacheModel.lastUpdate;
       });
     }).catchError((error) {
       setState(() {

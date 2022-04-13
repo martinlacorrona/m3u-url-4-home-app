@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:m3u_url_4_home_app/rest/config_rest.dart';
 
+import '../rest/model/config_model.dart';
+
 class ConfigWidget extends StatefulWidget {
   const ConfigWidget({Key? key}) : super(key: key);
 
