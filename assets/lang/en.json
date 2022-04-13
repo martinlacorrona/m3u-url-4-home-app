@@ -6,5 +6,6 @@
   "refreshCache": "Refresh list",
   "lastCacheUpdate": "Last list download: ",
   "loading": "Loading...",
-  "errorTryAgain": "Error, try again"
+  "errorTryAgain": "Error, try again",
+  "notUrl": "Not a valid URL."
 }

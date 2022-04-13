@@ -26,17 +26,20 @@ class _CacheWidgetState extends State<CacheWidget> {
     return Column(
       children: [
         Center(
-          child: Text(
-              _isLoading ? "Loading...".tr() : _isError ? 'errorTryAgain'.tr() : "lastCacheUpdate".tr() + _dateResult.toString()),
+          child: Text(_isLoading
+              ? "Loading...".tr()
+              : _isError
+                  ? 'errorTryAgain'.tr()
+                  : "lastCacheUpdate".tr() + _dateResult.toString()),
         ),
         const SizedBox(height: 10),
         Center(
           child: ElevatedButton(
             onPressed: _isLoading ? null : postCacheCall,
             child: Text('refreshCache'.tr()),
-            style: _isError ? ElevatedButton.styleFrom(
-                primary: Colors.redAccent
-            ) : null,
+            style: _isError
+                ? ElevatedButton.styleFrom(primary: Colors.redAccent)
+                : null,
           ),
         ),
       ],

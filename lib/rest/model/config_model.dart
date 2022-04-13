@@ -1,10 +1,10 @@
 class ConfigModel {
-  final String regexPattern;
-  final String url;
+  String regexPattern;
+  String url;
   final String port;
   final String cacheRefresh;
 
-  const ConfigModel({
+  ConfigModel({
     required this.regexPattern,
     required this.url,
     required this.port,
@@ -14,6 +14,15 @@ class ConfigModel {
   @override
   String toString() {
     return 'ConfigModel{regexPattern: $regexPattern, url: $url, port: $port, cacheRefresh: $cacheRefresh}';
+  }
+
+  Map<String, String> toJson() {
+    return {
+      'regexPattern': regexPattern,
+      'url': url,
+      'port': port,
+      'cacheRefresh': cacheRefresh,
+    };
   }
 
   factory ConfigModel.fromJson(Map<String, dynamic> json) {

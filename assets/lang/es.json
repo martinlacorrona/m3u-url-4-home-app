@@ -6,5 +6,6 @@
   "refreshCache": "Refrescar lista",
   "lastCacheUpdate": "Ultima descarga lista: ",
   "loading": "Cargando...",
-  "errorTryAgain": "Error, vuelve a intentarlo"
+  "errorTryAgain": "Error, vuelve a intentarlo",
+  "notUrl": "Eso no es una URL válida."
 }

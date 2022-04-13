@@ -16,13 +16,14 @@ Future<ConfigModel> getConfig() async {
   throw Exception('Failed to load config.');
 }
 
-/*Future<ConfigModel> postCache(ConfigModel configModel) async {
-  //TODO: pasar el modelo
-  final response = await http
-      .post(Uri.parse(environment + 'config'));
+Future<ConfigModel> postConfig(ConfigModel configModel) async {
+  String query = Uri(queryParameters: configModel.toJson()).query;
+  final response = await http.post(
+      Uri.parse(environment + 'config?$query'),
+  );
 
-  if (response.statusCode == 200) {
+  if (response.statusCode == 201) {
     return ConfigModel.fromJson(jsonDecode(response.body));
   }
-  throw Exception('Failed to update cache.');
-}*/
+  throw Exception('Failed to update config.');
+}
